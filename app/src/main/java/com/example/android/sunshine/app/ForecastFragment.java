@@ -39,7 +39,7 @@ import java.util.List;
  */
 public class ForecastFragment extends Fragment {
 
-    private ArrayAdapter<String> mForecastAdapter;
+    public ArrayAdapter<String> mForecastAdapter;
 
     public ForecastFragment() {
     }
@@ -314,6 +314,17 @@ public class ForecastFragment extends Fragment {
             }
 
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(String[] strings) {
+            if (strings != null){
+                mForecastAdapter.clear();
+                for (String dayForecastStr : strings) {
+                    mForecastAdapter.add(dayForecastStr);
+                }
+                //New data is back from the server. Hooray!
+            }
         }
     }
 
